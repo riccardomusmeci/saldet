@@ -1,2 +1,2 @@
-# lightning-saliency
-Saliency Detection Methods implemented with PyTorch Lightning
+# saldet
+**saldet** is a library to perform Saliency Detection with Computer Vision
