@@ -12,7 +12,6 @@ def read_binary(file_path: str) -> np.ndarray:
 def read_gray(file_path: str) -> Image:
     if not os.path.exists(file_path):
         raise ValueError(f"The path {file_path} does not exist")
-    
     image = Image.open(file_path).convert("L")
     return image
 
