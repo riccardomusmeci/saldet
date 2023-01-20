@@ -90,3 +90,7 @@ class SaliencyDataset(Dataset):
         mask = mask.unsqueeze(dim=0)
         
         return image, mask
+    
+    def __len__(self) -> int:
+        return len(self.images)
+    
