@@ -36,9 +36,9 @@ class MultiBCELoss(nn.Module):
         if not hasattr(preds, "__iter__"):
             return self.bce_loss(preds, target)
         else:
-            losses = []
+            loss = None
             for pred in preds:
-                losses.append(self.bce_loss(pred, target))
-            losses = torch.tensor(losses)
-            return torch.sum(losses)
+                if loss is None: loss = self.bce_loss(pred, target)
+                else: loss += self.bce_loss(pred, target)
+            return loss
         
