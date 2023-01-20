@@ -33,9 +33,8 @@ class MultiBCELoss(nn.Module):
             Tuple[Tensor, Tensor]: total loss
         """
         
-        if not isinstance(preds, list) or not isinstance(preds, tuple):
+        if not hasattr(preds, "__iter__"):
             return self.bce_loss(preds, target)
-        
         else:
             losses = []
             for pred in preds:
