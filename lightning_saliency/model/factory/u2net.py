@@ -5,10 +5,8 @@ import math
 
 __all__ = ['U2NET_full', 'U2NET_lite']
 
-
 def _upsample_like(x, size):
     return nn.Upsample(size=size, mode='bilinear', align_corners=False)(x)
-
 
 def _size_map(x, height):
     # {height: size} for Upsample
@@ -18,7 +16,6 @@ def _size_map(x, height):
         sizes[h] = size
         size = [math.ceil(w / 2) for w in size]
     return sizes
-
 
 class REBNCONV(nn.Module):
     def __init__(self, in_ch=3, out_ch=3, dilate=1):
@@ -30,7 +27,6 @@ class REBNCONV(nn.Module):
 
     def forward(self, x):
         return self.relu_s1(self.bn_s1(self.conv_s1(x)))
-
 
 class RSU(nn.Module):
     def __init__(self, name, height, in_ch, mid_ch, out_ch, dilated=False):
@@ -74,7 +70,6 @@ class RSU(nn.Module):
 
         dilate = 2 if not dilated else 2 ** (height - 1)
         self.add_module(f'rebnconv{height}', REBNCONV(mid_ch, mid_ch, dilate=dilate))
-
 
 class U2NET(nn.Module):
     def __init__(self, cfgs, out_ch):
@@ -129,7 +124,6 @@ class U2NET(nn.Module):
         # build fuse layer
         self.add_module('outconv', nn.Conv2d(int(self.height * self.out_ch), self.out_ch, 1))
 
-
 def U2NET_full():
     full = {
         # cfgs for building RSUs and sides
@@ -147,7 +141,6 @@ def U2NET_full():
         'stage1d': ['De_1', (7, 128, 16, 64), 64],
     }
     return U2NET(cfgs=full, out_ch=1)
-
 
 def U2NET_lite():
     lite = {
