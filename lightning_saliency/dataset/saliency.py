@@ -86,7 +86,7 @@ class SaliencyDataset(Dataset):
             image, mask = self.transform(image=image, mask=mask)
         
         image = torch.from_numpy(to_tensor_format(image))
-        mask = torch.from_numpy(mask).long()
+        mask = torch.from_numpy(mask)
         mask = mask.unsqueeze(dim=0)
         
         return image, mask
