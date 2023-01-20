@@ -9,7 +9,7 @@ class SaliencyTransform:
     def __init__(
         self,
         train: bool,
-        img_size: Union[int, list, tuple],
+        input_size: Union[int, list, tuple],
         interpolation: int = 3,
         mean: list = [0.485, 0.456, 0.406], 
         std: list = [0.229, 0.224, 0.225],
@@ -19,19 +19,19 @@ class SaliencyTransform:
 
         Args:
             train (bool): train/val mode.
-            img_size (Union[int, list, tuple]): image size. 
+            input_size (Union[int, list, tuple]): image input size. 
             interpolation (int, optional): resize interpolation. Defaults to 3.
             mean (list, optional): normalization mean. Defaults to [0.485, 0.456, 0.406].
             std (list, optional): normalization std. Defaults to [0.229, 0.224, 0.225].
             random_crop_p (float, optional): random crop probability. Defaults to 0.1.
         """
         
-        if isinstance(img_size, tuple) or isinstance(img_size, list):
-            height = img_size[0]
-            width = img_size[1]
+        if isinstance(input_size, tuple) or isinstance(input_size, list):
+            height = input_size[0]
+            width = input_size[1]
         else:
-            height = img_size
-            width = img_size
+            height = input_size
+            width = input_size
             
         if train:
             self.image_transform = A.Compose(
