@@ -1,11 +1,9 @@
 import os
 import argparse
-from saldet.core import train
+from saldet.core import inference
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning) 
-# from pytorch_lightning.utilities.warnings import LightningDeprecationWarning
-# warnings.filterwarnings("ignore", category=LightningDeprecationWarning) 
 
 def parse_args() -> argparse.Namespace:
     
@@ -13,31 +11,38 @@ def parse_args() -> argparse.Namespace:
     
     parser.add_argument(
         "--config",
-        default="config/config.yaml",
         type=str,
-        required=False,
+        required=True,
         help="path to the YAML configuration file"
     )
     
     parser.add_argument(
-        "--data-dir",
-        metavar="N",
-        required=True,
-        help="Input data dir path."
-    )
-    
-    parser.add_argument(
-        "--output-dir",
+        "--ckpt",
         required=True,
         type=str,
         help="local directory where the best model checkpoint is saved at the end of training."
     )
     
     parser.add_argument(
-        "--seed",
-        type=int,
-        default=42,
-        help="random seed for reproducibility"
+        "--images-dir",
+        metavar="N",
+        required=True,
+        help="Input images dir path."
+    )
+    
+    parser.add_argument(
+        "--output-dir",
+        metavar="N",
+        required=True,
+        help="Output data dir to save saliency maps."
+    )
+    
+    parser.add_argument(
+        "--thresh",
+        default=None,
+        type=float,
+        required=False,
+        help="Input data dir path."
     )
     
     args = parser.parse_args()
@@ -46,4 +51,4 @@ def parse_args() -> argparse.Namespace:
 
 if __name__ == "__main__":
     args = parse_args()
-    train(args)
+    inference(args)
