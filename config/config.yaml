@@ -48,7 +48,6 @@ transform:
   
 ##### Checkpoint #####
 callbacks:
-  # filename: "epoch={epoch}-step={step}-val_loss={loss/val:.3f}-val_iou={IoU/all/val:.3f}"   # for cuda
   filename: epoch={epoch}-step={step}-{loss_val:.3f}-{mae_val:.3f}-{ssim_val:.3f}-{IoU_val:.3f}
   monitor: loss_val                                       # metric to monitor
   mode: min                                               # mode to monitor metric
