@@ -6,7 +6,7 @@ timm==0.5.4
 albumentations==1.1.0
 opencv-python==4.5.5.64
 lightning-bolts==0.5.0
-torch==1.13.0
+torch==1.13.1
 torchvision==0.13.0
 fiftyone==0.17.2
 pytorch-lightning==1.8.5
