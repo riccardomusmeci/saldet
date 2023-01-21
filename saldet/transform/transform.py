@@ -114,6 +114,9 @@ class SaliencyTransform:
             image = np.array(image)
         
         image = self.image_transform(image=image)['image']
-        mask = self.mask_transform(image=mask)['image']
+        if mask is not None:
+            mask = self.mask_transform(image=mask)['image']
+        else:
+            mask = None
              
         return image, mask
