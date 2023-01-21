@@ -15,6 +15,7 @@ class SaliencyDataModule(pl.LightningDataModule):
         num_workers: int = 1,
         pin_memory: bool = False,
         drop_last: bool = False,
+        max_samples: int = None
     ):
         """PyTorchLightning SaliencyDataModule
 
@@ -27,6 +28,7 @@ class SaliencyDataModule(pl.LightningDataModule):
             num_workers (int, optional): data laoder num workers. Defaults to 1.
             pin_memory (bool, optional): data loader oin memory. Defaults to False.
             drop_last (bool, optional): data loader drop last. Defaults to False.
+            max_samples (int, optional): maximum number of samples for each dataset (only for test). Defaults to None.
         """
         super().__init__()
         self.root_dir = root_dir
@@ -36,7 +38,8 @@ class SaliencyDataModule(pl.LightningDataModule):
         self.shuffle = shuffle
         self.num_workers = num_workers
         self.pin_memory = pin_memory
-        self.drop_last = drop_last            
+        self.drop_last = drop_last      
+        self.max_samples = max_samples      
         
     def prepare_data(self) -> None:  # type: ignore
         pass
@@ -52,19 +55,22 @@ class SaliencyDataModule(pl.LightningDataModule):
                 root_dir=self.root_dir,
                 train=True,
                 transform=self.train_transform,
+                max_samples=self.max_samples
             )
             
             self.val_dataset = SaliencyDataset(
                 root_dir=self.root_dir,
                 train=False,
                 transform=self.val_transform,
+                max_samples=self.max_samples
             )
             
         if stage == "test" or stage is None:
             self.test_dataset = SaliencyDataset(
                 root_dir=self.root_dir,
                 train=False,
-                transform=self.val_transform
+                transform=self.val_transform,
+                max_samples=self.max_samples
             )
             
     def train_dataloader(self) -> Union[DataLoader, List[DataLoader], Dict[str, DataLoader]]:
