@@ -12,7 +12,8 @@ class SaliencyDataset(Dataset):
         self,
         root_dir: str,
         train: bool = True,
-        transform: Callable = None
+        transform: Callable = None,
+        max_samples: int = None
     ) -> None:
         """Saliency Detection base dataset (with images and masks dir)
 
@@ -32,6 +33,10 @@ class SaliencyDataset(Dataset):
         self.masks_dir = os.path.join(root_dir, "masks")
         
         self.images, self.masks = self._load_data()
+        
+        if max_samples is not None:
+            self.images = self.images[:max_samples]
+            self.masks = self.masks[:max_samples]
         
         self.transform = transform
         
@@ -95,4 +100,3 @@ class SaliencyDataset(Dataset):
     
     def __len__(self) -> int:
         return len(self.images)
-    
