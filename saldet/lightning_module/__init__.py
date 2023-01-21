@@ -1,2 +1,2 @@
-from .model import SaliencyModule
+from .model import SaliencyModel
 from .data import SaliencyDataModule
