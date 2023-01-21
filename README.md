@@ -110,7 +110,7 @@ If --thresh is not specified, the saliency maps won't be a binary map.
 ## **Show Saliency Maps**
 The notebook *notebooks/show_saliency_maps.ipynb* can be used to show saliency maps (with not threshold applied) generated from the model.
 
-Here's an example of some saliency maps generated from a **U2Net_Lite** trained on [**DUTS**](http://saliencydetection.net/duts/) dataset for 30 epochs.
+Here's an example of some saliency maps generated from a **U2Net_Lite** trained on [**DUTS**](http://saliencydetection.net/duts/) dataset for 30 epochs and input size to 224.
 
 <p align="center">
     <img width="80%" src="static/example_2.png" alt>
