@@ -1,18 +1,20 @@
 import torch
 from torch import nn
 import pytorch_lightning as pl
+from saldet.utils import device
 from torch.optim import Optimizer
-from typing import List, Tuple, Union
 from torch.nn.modules.loss import _Loss
+from typing import List, Tuple, Union, Any
 from torch.optim.lr_scheduler import _LRScheduler
+from torchmetrics import MeanAbsoluteError, StructuralSimilarityIndexMeasure, JaccardIndex
 
-class SaliencyModule(pl.LightningModule):
+class SaliencyModel(pl.LightningModule):
     def __init__(
         self,
         model: nn.Module,
         criterion: _Loss,
         optimizer: Optimizer,
-        lr_scheduler: _LRScheduler = None,
+        lr_scheduler: _LRScheduler = None
     ) -> None:
         """Saliency Model with PyTorchLightning Module
 
@@ -28,7 +30,13 @@ class SaliencyModule(pl.LightningModule):
         self.model = model
         self.criterion = criterion
         self.optimizer = optimizer
-        self.lr_scheduler = lr_scheduler        
+        self.lr_scheduler = lr_scheduler
+        
+        self.metrics = {
+            "mae": MeanAbsoluteError().to(device=device()),
+            "ssim": StructuralSimilarityIndexMeasure().to(device=device()),
+            "IoU": JaccardIndex(num_classes=2, ignore_index=0).to(device=device())
+        }    
         
     def forward(self, x: torch.Tensor) -> torch.Tensor:  
         # Output a tensor of shape (batch size, num classes, height, width)
@@ -47,11 +55,19 @@ class SaliencyModule(pl.LightningModule):
         x, mask = batch
         # Unnormalized scores
         preds = self(x)
+        
         # Loss
         loss = self.criterion(preds, mask)
-        self.log("loss/train", loss, sync_dist=True)
+        self.log("loss_train", loss, sync_dist=True)
         self.log("lr", self.lr_scheduler.get_last_lr()[0], prog_bar=True)
         return loss
+    
+    def preds_from_logits(self, logits: torch.Tensor) -> torch.Tensor:
+        if self.num_classes == 2:
+            preds = torch.sigmoid(logits)
+        else:
+            preds = torch.softmax(logits, dim=1)
+        return preds
 
     def validation_step(self, batch: torch.Tensor, batch_idx: int) -> None:
         """Validation step
@@ -62,13 +78,16 @@ class SaliencyModule(pl.LightningModule):
 
         """
         x, mask = batch
-        
         preds = self(x)
-        
-        # loss + IoU
         loss = self.criterion(preds, mask)
-        self.log("loss/val", loss, sync_dist=True)
-
+        
+        self.log("loss_val", loss, sync_dist=True, prog_bar=True)
+        # Metrics
+        if hasattr(preds, "__iter__"):
+            preds = preds[0]
+        for m in self.metrics:
+            self.log(f"{m}_val", self.metrics[m](preds, mask.long() if m=="IoU" else mask), sync_dist=True, prog_bar=True)
+    
     def configure_optimizers(self,) -> Union[List[Optimizer], Tuple[List[Optimizer], List[_LRScheduler]]]:
         if self.lr_scheduler is None:
             return [self.optimizer]
