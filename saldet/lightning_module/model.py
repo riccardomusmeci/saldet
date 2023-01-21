@@ -62,13 +62,6 @@ class SaliencyModel(pl.LightningModule):
         self.log("lr", self.lr_scheduler.get_last_lr()[0], prog_bar=True)
         return loss
     
-    def preds_from_logits(self, logits: torch.Tensor) -> torch.Tensor:
-        if self.num_classes == 2:
-            preds = torch.sigmoid(logits)
-        else:
-            preds = torch.softmax(logits, dim=1)
-        return preds
-
     def validation_step(self, batch: torch.Tensor, batch_idx: int) -> None:
         """Validation step
 
@@ -87,7 +80,7 @@ class SaliencyModel(pl.LightningModule):
             preds = preds[0]
         for m in self.metrics:
             self.log(f"{m}_val", self.metrics[m](preds, mask.long() if m=="IoU" else mask), sync_dist=True, prog_bar=True)
-    
+            
     def configure_optimizers(self,) -> Union[List[Optimizer], Tuple[List[Optimizer], List[_LRScheduler]]]:
         if self.lr_scheduler is None:
             return [self.optimizer]

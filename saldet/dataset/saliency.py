@@ -40,11 +40,12 @@ class SaliencyDataset(Dataset):
         
         self.transform = transform
         
-        print(f"#"*12 + " Dataset Recap " + "#"*12)
+        print(f"#"*12 + f" {'train' if train else 'val'} dataset recap " + "#"*12)
         print(f"\t> Root Dir: {root_dir}")
         print(f"\t> Images: {len(self.images)}")
         print(f"\t> Masks: {len(self.masks)}")
         print(f"#"*40)
+        print(f"\n")
         
     def _load_data(
         self
@@ -59,8 +60,7 @@ class SaliencyDataset(Dataset):
         _masks = [f for f in os.listdir(self.masks_dir)]
         
         images, masks = [], []
-        print(f"> Loading images and masks")
-        for image in tqdm(_images):
+        for image in _images:
             image_no_ext = os.path.splitext(image)[0]
             for mask in _masks:
                 if os.path.splitext(mask)[0] == image_no_ext:
