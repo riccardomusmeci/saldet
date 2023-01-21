@@ -34,6 +34,13 @@ def parse_args() -> argparse.Namespace:
     )
     
     parser.add_argument(
+        "--resume-from",
+        default=None,
+        type=str,
+        help="checkpoint path to resume training from."
+    )
+    
+    parser.add_argument(
         "--seed",
         type=int,
         default=42,

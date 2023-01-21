@@ -54,10 +54,14 @@ def train(args):
         **config["callbacks"]
     )
     
+    if args.resume_from is not None:
+        print(f"> Resuming training from {args.resume_from}.")
+        
     # trainer 
     trainer = pl.Trainer(
         logger=False,
         callbacks=callbacks,
+        resume_from_checkpoint=args.resume_from,
         **config["trainer"]
     )
     
