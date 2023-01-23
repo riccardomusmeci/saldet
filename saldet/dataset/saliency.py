@@ -56,8 +56,8 @@ class SaliencyDataset(Dataset):
             Tuple[List[str], List[str]]: images and masks paths
         """
         
-        _images = [f for f in os.listdir(self.images_dir)]
-        _masks = [f for f in os.listdir(self.masks_dir)]
+        _images = [f for f in os.listdir(self.images_dir) if not f.startswith(".")]
+        _masks = [f for f in os.listdir(self.masks_dir) if not f.startswith(".")]
         
         images, masks = [], []
         for image in _images:
