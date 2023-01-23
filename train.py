@@ -23,21 +23,21 @@ def parse_args() -> argparse.Namespace:
         "--data-dir",
         metavar="N",
         required=True,
-        help="Input data dir path."
+        help="Input data dir path"
     )
     
     parser.add_argument(
         "--output-dir",
         required=True,
         type=str,
-        help="local directory where the best model checkpoint is saved at the end of training."
+        help="local directory where the best model checkpoint is saved at the end of training"
     )
     
     parser.add_argument(
         "--resume-from",
         default=None,
         type=str,
-        help="checkpoint path to resume training from."
+        help="checkpoint path to resume training from"
     )
     
     parser.add_argument(

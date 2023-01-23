@@ -7,7 +7,7 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 def parse_args() -> argparse.Namespace:
     
-    parser = argparse.ArgumentParser("Training config")
+    parser = argparse.ArgumentParser("Inference config")
     
     parser.add_argument(
         "--config",
@@ -20,21 +20,21 @@ def parse_args() -> argparse.Namespace:
         "--ckpt",
         required=True,
         type=str,
-        help="local directory where the best model checkpoint is saved at the end of training."
+        help="local directory where the best model checkpoint is saved at the end of training"
     )
     
     parser.add_argument(
         "--images-dir",
         metavar="N",
         required=True,
-        help="Input images dir path."
+        help="input images dir path."
     )
     
     parser.add_argument(
         "--output-dir",
         metavar="N",
         required=True,
-        help="Output data dir to save saliency maps."
+        help="output data dir to save saliency maps"
     )
     
     parser.add_argument(
@@ -42,7 +42,7 @@ def parse_args() -> argparse.Namespace:
         default=None,
         type=float,
         required=False,
-        help="Input data dir path."
+        help="saliency map threshold"
     )
     
     args = parser.parse_args()
