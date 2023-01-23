@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="80%" src="static/example_1.png" alt>
+    <img width="100%" src="static/example_1.png" alt>
 </p>
 
 
@@ -113,22 +113,22 @@ The notebook *notebooks/show_saliency_maps.ipynb* can be used to show saliency m
 Here's an example of some saliency maps generated from a **U2Net_Lite** trained on [**DUTS**](http://saliencydetection.net/duts/) dataset for 30 epochs and input size to 224.
 
 <p align="center">
-    <img width="80%" src="static/example_2.png" alt>
+    <img width="100%" src="static/example_2.png" alt>
 </p>
 <p align="center">
-    <img width="80%" src="static/example_3.png" alt>
+    <img width="100%" src="static/example_3.png" alt>
 </p>
 <p align="center">
-    <img width="80%" src="static/example_4.png" alt>
+    <img width="100%" src="static/example_4.png" alt>
 </p>
 <p align="center">
-    <img width="80%" src="static/example_5.png" alt>
+    <img width="100%" src="static/example_5.png" alt>
 </p>
 <p align="center">
-    <img width="80%" src="static/example_6.png" alt>
+    <img width="100%" src="static/example_6.png" alt>
 </p>
 <p align="center">
-    <img width="80%" src="static/example_7.png" alt>
+    <img width="100%" src="static/example_7.png" alt>
 </p>
 
 
