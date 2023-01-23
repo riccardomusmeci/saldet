@@ -5,8 +5,8 @@ from saldet.utils import device
 from torch.optim import Optimizer
 from torch.nn.modules.loss import _Loss
 from typing import List, Tuple, Union, Any
+from torchmetrics import MeanAbsoluteError
 from torch.optim.lr_scheduler import _LRScheduler
-from torchmetrics import MeanAbsoluteError, StructuralSimilarityIndexMeasure, JaccardIndex
 
 class SaliencyModel(pl.LightningModule):
     def __init__(
@@ -33,9 +33,7 @@ class SaliencyModel(pl.LightningModule):
         self.lr_scheduler = lr_scheduler
         
         self.metrics = {
-            "mae": MeanAbsoluteError().to(device=device()),
-            "ssim": StructuralSimilarityIndexMeasure().to(device=device()),
-            "IoU": JaccardIndex(num_classes=2, ignore_index=0).to(device=device())
+            "mae": MeanAbsoluteError().to(device=device())
         }    
         
     def forward(self, x: torch.Tensor) -> torch.Tensor:  
@@ -53,9 +51,7 @@ class SaliencyModel(pl.LightningModule):
             float: loss value
         """
         x, mask = batch
-        # Unnormalized scores
-        preds = self(x)
-        
+        preds = self(x)        
         # Loss
         loss = self.criterion(preds, mask)
         self.log("loss_train", loss, sync_dist=True)
@@ -75,11 +71,17 @@ class SaliencyModel(pl.LightningModule):
         loss = self.criterion(preds, mask)
         
         self.log("loss_val", loss, sync_dist=True, prog_bar=True)
+        
         # Metrics
         if hasattr(preds, "__iter__"):
             preds = preds[0]
         for m in self.metrics:
-            self.log(f"{m}_val", self.metrics[m](preds, mask.long() if m=="IoU" else mask), sync_dist=True, prog_bar=True)
+            self.log(
+                f"{m}_val", 
+                self.metrics[m](preds, mask.long() if m=="IoU" else mask), 
+                sync_dist=True, 
+                prog_bar=True
+            )
             
     def configure_optimizers(self,) -> Union[List[Optimizer], Tuple[List[Optimizer], List[_LRScheduler]]]:
         if self.lr_scheduler is None:
