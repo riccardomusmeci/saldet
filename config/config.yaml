@@ -27,7 +27,7 @@ loss:
 ###### Optimizer ######  
 optimizer:
   name: adam                                   # optimization algorithm (sgd, adam, adamw)
-  lr: 0.01                                     # base learning rate at the start of the training
+  lr: 0.001                                    # base learning rate at the start of the training
   betas: [0.9, 0.990]                          # adam betas
   eps: 0.000000001                             # adam eps
   weight_decay: 0                              # weight decay
@@ -41,14 +41,14 @@ lr_scheduler:
 
 ######## Data Augmentation ###########
 transform: 
-  input_size: 224                             # input image size
+  input_size: 320                             # input image size
   mean: [0.485, 0.456, 0.406]                 # ImageNet mean normalization ([0.485, 0.456, 0.406])
   std: [0.229, 0.224, 0.225]                  # ImageNet std normalization ([0.229, 0.224, 0.225])
   random_crop_p: 0.5                          # random crop transformation probability
   
 ##### Checkpoint #####
 callbacks:
-  filename: epoch={epoch}-step={step}-{loss_val:.3f}-{mae_val:.3f}-{ssim_val:.3f}-{IoU_val:.3f}
+  filename: epoch={epoch}-step={step}-{loss_val:.3f}-{mae_val:.3f}
   monitor: loss_val                                       # metric to monitor
   mode: min                                               # mode to monitor metric
   save_top_k: 5                                           # number of best ckpt to save
