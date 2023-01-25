@@ -38,7 +38,7 @@ class SaliencyTransform:
             width = input_size
             
         if train:
-            self.image_transform = A.Compose(
+            self.transform = A.Compose(
                 [
                     A.Resize(
                         height=height, 
@@ -63,29 +63,8 @@ class SaliencyTransform:
                     )
                 ]
             )
-            self.mask_transform = A.Compose(
-                [
-                    A.Resize(
-                        height=height, 
-                        width=width,
-                        interpolation=interpolation,
-                        always_apply=True,
-                    ),
-                    A.RandomResizedCrop(
-                        height=height, 
-                        width=width,
-                        p=random_crop_p
-                    ),
-                    A.HorizontalFlip(
-                        p=h_flip_p
-                    ),
-                    A.VerticalFlip(
-                        p=v_flip_p
-                    )
-                ]
-            )
         else:
-            self.image_transform = A.Compose(
+            self.transform = A.Compose(
                 [
                     A.Resize(
                         height=height, 
@@ -97,16 +76,6 @@ class SaliencyTransform:
                         mean=mean, 
                         std=std
                     ),
-                ]
-            )
-            self.mask_transform = A.Compose(
-                [
-                    A.Resize(
-                        height=height, 
-                        width=width,
-                        interpolation=interpolation,
-                        always_apply=True,
-                    )
                 ]
             )
                     
@@ -131,10 +100,11 @@ class SaliencyTransform:
         if isinstance(mask, Image.Image):
             image = np.array(image)
         
-        image = self.image_transform(image=image)['image']
         if mask is not None:
-            mask = self.mask_transform(image=mask)['image']
+            sample = self.transform(image=image, mask=mask)
+            image, mask = sample['image'], sample['mask']
         else:
+            image = self.transform(image=image)['image']
             mask = None
              
         return image, mask
