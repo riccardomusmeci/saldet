@@ -48,7 +48,7 @@ transform:
   
 ##### Checkpoint #####
 callbacks:
-  filename: "{epoch}-{step}-{loss_val:.3f}-{mae_val:.3f}"
+  filename: "{epoch}-{step}-{loss_val:.4f}"
   monitor: loss_val                                       # metric to monitor
   mode: min                                               # mode to monitor metric
   save_top_k: 5                                           # number of best ckpt to save

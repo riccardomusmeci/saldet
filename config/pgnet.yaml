@@ -27,10 +27,9 @@ loss:
 ###### Optimizer ######  
 optimizer:
   name: sgd                                   # optimization algorithm (sgd, adam, adamw)
-  lr: 0.001                                    # base learning rate at the start of the training
-  # betas: [0.9, 0.990]                          # adam betas
-  # eps: 0.000000001                             # adam eps
-  # weight_decay: 0                              # weight decay
+  lr: 0.001                                   # base learning rate at the start of the training
+  momentum: 0.9                               # momentum
+  weight_decay: 0.00005                       # weight decay
 
 ###### LR Scheduler ######
 lr_scheduler:
@@ -48,7 +47,7 @@ transform:
   
 ##### Checkpoint #####
 callbacks:
-  filename: "{epoch}-{step}-{loss_val:.3f}-{mae_val:.3f}"
+  filename: "{epoch}-{step}-{loss_val:.4f}"
   monitor: loss_val                                       # metric to monitor
   mode: min                                               # mode to monitor metric
   save_top_k: 5                                           # number of best ckpt to save
