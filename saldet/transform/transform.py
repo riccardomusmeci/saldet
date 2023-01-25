@@ -14,6 +14,8 @@ class SaliencyTransform:
         mean: list = [0.485, 0.456, 0.406], 
         std: list = [0.229, 0.224, 0.225],
         random_crop_p: float = 0.1,
+        h_flip_p: float = 0.1,
+        v_flip_p: float = 0.1
     ) -> None:
         """Self-Supervised classic augmentations
 
@@ -24,6 +26,8 @@ class SaliencyTransform:
             mean (list, optional): normalization mean. Defaults to [0.485, 0.456, 0.406].
             std (list, optional): normalization std. Defaults to [0.229, 0.224, 0.225].
             random_crop_p (float, optional): random crop probability. Defaults to 0.1.
+            h_flip_p (float, optional): horizontal flip probability. Defaults to 0.1.
+            v_flip_p (float, optional): vertical flip probability. Defaults to 0.1.
         """
         
         if isinstance(input_size, tuple) or isinstance(input_size, list):
@@ -47,6 +51,12 @@ class SaliencyTransform:
                         width=width,
                         p=random_crop_p
                     ),
+                    A.HorizontalFlip(
+                        p=h_flip_p
+                    ),
+                    A.VerticalFlip(
+                        p=v_flip_p
+                    ),
                     A.Normalize(
                         mean=mean, 
                         std=std
@@ -65,6 +75,12 @@ class SaliencyTransform:
                         height=height, 
                         width=width,
                         p=random_crop_p
+                    ),
+                    A.HorizontalFlip(
+                        p=h_flip_p
+                    ),
+                    A.VerticalFlip(
+                        p=v_flip_p
                     )
                 ]
             )
@@ -73,7 +89,9 @@ class SaliencyTransform:
                 [
                     A.Resize(
                         height=height, 
-                        width=width
+                        width=width,
+                        interpolation=interpolation,
+                        always_apply=True
                     ),
                     A.Normalize(
                         mean=mean, 
