@@ -30,11 +30,7 @@ class SaliencyModel(pl.LightningModule):
         self.model = model
         self.criterion = criterion
         self.optimizer = optimizer
-        self.lr_scheduler = lr_scheduler
-        
-        self.metrics = {
-            "mae": MeanAbsoluteError().to(device=device())
-        }    
+        self.lr_scheduler = lr_scheduler   
         
     def forward(self, x: torch.Tensor) -> torch.Tensor:  
         # Output a tensor of shape (batch size, num classes, height, width)
@@ -71,17 +67,6 @@ class SaliencyModel(pl.LightningModule):
         loss = self.criterion(preds, mask)
         
         self.log("loss_val", loss, sync_dist=True, prog_bar=True)
-        
-        # Metrics
-        if hasattr(preds, "__iter__"):
-            preds = preds[0]
-        for m in self.metrics:
-            self.log(
-                f"{m}_val", 
-                self.metrics[m](preds, mask.long() if m=="IoU" else mask), 
-                sync_dist=True, 
-                prog_bar=True
-            )
             
     def configure_optimizers(self,) -> Union[List[Optimizer], Tuple[List[Optimizer], List[_LRScheduler]]]:
         if self.lr_scheduler is None:

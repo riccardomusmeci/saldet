@@ -73,13 +73,14 @@ class InferenceDataset(Dataset):
         image_path = self.images[index]
         image_name = image_path.split(os.sep)[-1]
         image = read_rgb(image_path)
+        shape = image.shape
         
         if self.transform is not None:
             image, _ = self.transform(image, None)
             
         image = torch.from_numpy(to_tensor_format(image))
         
-        return image, os.path.splitext(image_name)[0]
+        return image, shape, os.path.splitext(image_name)[0]
             
     def __len__(self):
         return len(self.images)

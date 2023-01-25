@@ -45,6 +45,13 @@ def parse_args() -> argparse.Namespace:
         help="saliency map threshold"
     )
     
+    parser.add_argument(
+        "--interpolate",
+        default=True,
+        type=lambda x: True if x.lower()=="true" else False,
+        help="if mask from model is to be interpolated before saving it"
+    )
+    
     args = parser.parse_args()
     
     return args

@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 from tqdm import tqdm
 from saldet.utils import *
+import torch.nn.functional as F
 from saldet.io import load_config
 from saldet.model import create_model
 from torch.utils.data import DataLoader
@@ -40,7 +41,7 @@ def inference(args):
     )
     data_loader = DataLoader(
         dataset=dataset,
-        batch_size=16
+        batch_size=1
     )
     
     print(f"> Running inference on images and saving saliency maps at {args.output_dir}")
@@ -48,12 +49,13 @@ def inference(args):
     model.eval()
     with torch.no_grad():
         for _, batch in tqdm(enumerate(data_loader), total=len(data_loader), desc="Inference"):
-            x, image_names = batch
+            x, shape, image_names = batch
             x = x.to(device())
             preds = model(x)
             if hasattr(preds, "__iter__"):
                 preds = preds[0]
-            
+            if args.interpolate:
+                preds = F.interpolate(preds, size=shape[:2], mode="bilinear")
             for pred, image_name in zip(preds, image_names):
                 file_path = os.path.join(args.output_dir, f"{image_name}.png")
                 pred = pred.squeeze().cpu().numpy()
