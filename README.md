@@ -7,7 +7,7 @@
 **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to  perform Saliency Detection with Computer Vision.
 
 ## **Models**
-List of saliency detection based model supported by the saldet:
+List of saliency detection models supported by saldet:
 
 * U2Net - https://arxiv.org/abs/2005.09007v3
 * PGNet - https://arxiv.org/abs/2204.05041 (follow training instructions from [PGNet's repo](https://github.com/iCVTEAM/PGNet))
