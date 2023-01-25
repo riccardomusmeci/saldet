@@ -18,11 +18,12 @@ def create_optimizer(
     Args:
         name (str): optimizer name
         params (Iterable): optimizer
+        split_by (str, optional): splitting parameters into base and head based on str (only for PGNet). Defaults to None.
 
     Returns:
         Optimizer: optimizer
      
-    """
+    """    
     name = name.lower()
     assert name in FACTORY.keys(), f"Only {list(FACTORY.keys())} optimizers are supported. Change {name} to one of them."
     return FACTORY[name](params, **kwargs)
