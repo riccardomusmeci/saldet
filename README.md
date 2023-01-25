@@ -12,6 +12,8 @@ List of saliency detection based model supported by the saldet:
 * U2Net - https://arxiv.org/abs/2005.09007v3
 * PGNet - https://arxiv.org/abs/2204.05041 (follow training instructions from [PGNet's repo](https://github.com/iCVTEAM/PGNet))
 
+**[WARNING]** Some models might not be trained on Apple Silicon GPUs (mps).
+
 ## **PyTorch-Lightning Training**
 The library comes with easy access to training models with PyTorch-Lightning. 
 
