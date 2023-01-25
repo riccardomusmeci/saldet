@@ -12,7 +12,12 @@ class MultiBCELoss(nn.Module):
         reduce: Any = None
     ) -> None:
         super().__init__()
-        self.bce_loss = nn.BCEWithLogitsLoss(
+        # self.bce_loss = nn.BCEWithLogitsLoss(
+        #     weight=weight,
+        #     size_average=size_average,
+        #     reduce=reduce
+        # )
+        self.bce_loss = nn.BCELoss(
             weight=weight,
             size_average=size_average,
             reduce=reduce
