@@ -6,7 +6,8 @@ from saldet.utils import device
 
 FACTORY = {
     "u2net_lite": U2NET_lite,
-    "u2net_full": U2NET_full    
+    "u2net_full": U2NET_full,
+    "pgnet": PGNet
 }
 
 def create_model(
