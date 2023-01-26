@@ -112,7 +112,7 @@ If --thresh is not specified, the saliency maps won't be a binary map.
 ## **Show Saliency Maps**
 The notebook *notebooks/show_saliency_maps.ipynb* can be used to show saliency maps (with not threshold applied) generated from the model.
 
-Here's an example of some saliency maps generated from a **U2Net_Lite** trained on [**DUTS**](http://saliencydetection.net/duts/) dataset for 30 epochs and input size to 224.
+Here's an example of some saliency maps generated from a **U2Net_Full** trained on [DUTS](http://saliencydetection.net/duts/) dataset for 66 epochs and input size to 320.
 
 <p align="center">
     <img width="100%" src="static/example_2.png" alt>
@@ -132,7 +132,44 @@ Here's an example of some saliency maps generated from a **U2Net_Lite** trained 
 <p align="center">
     <img width="100%" src="static/example_7.png" alt>
 </p>
+<p align="center">
+    <img width="100%" src="static/example_8.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/example_9.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/example_10.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/example_11.png" alt>
+</p>
 
+Here's an example of some saliency maps generated from the same model on validation images of [UHRSD 2K dataset](https://paperswithcode.com/dataset/uhrsd).
 
+<p align="center">
+    <img width="100%" src="static/unseen_example_2.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_3.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_4.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_5.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_6.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_7.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_8.png" alt>
+</p>
+<p align="center">
+    <img width="100%" src="static/unseen_example_9.png" alt>
+</p>
 
 
