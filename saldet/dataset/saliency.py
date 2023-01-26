@@ -86,8 +86,18 @@ class SaliencyDataset(Dataset):
             Tuple[torch.Tensor, torch.Tensor]: (image, mask)
         """
         
-        image = read_rgb(self.images[index])
-        mask = read_binary(self.masks[index])
+        try:
+            image = read_rgb(self.images[index])
+        except Exception as e:
+            print(f"Found error while loading image: {self.images[index]}")
+            print(f"Exception {e}")
+            quit()
+        try:
+            mask = read_binary(self.masks[index])
+        except Exception as e:
+            print(f"Found error while loading mask: {self.masks[index]}")
+            print(f"Exception {e}")
+            quit()
         
         if self.transform:
             image, mask = self.transform(image=image, mask=mask)
