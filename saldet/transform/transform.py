@@ -17,7 +17,7 @@ class SaliencyTransform:
         h_flip_p: float = 0.1,
         v_flip_p: float = 0.1
     ) -> None:
-        """Self-Supervised classic augmentations
+        """Saliency based transformation
 
         Args:
             train (bool): train/val mode.
@@ -78,8 +78,7 @@ class SaliencyTransform:
                     ),
                 ]
             )
-                    
-            
+                       
     def __call__(
         self, 
         image: Union[np.array, PIL.Image.Image],
