@@ -52,6 +52,13 @@ def parse_args() -> argparse.Namespace:
         help="if mask from model is to be interpolated before saving it"
     )
     
+    parser.add_argument(
+        "--normalize",
+        default=True,
+        type=lambda x: True if x.lower()=="true" else False,
+        help="if pred mask has to be normalized"
+    )
+    
     args = parser.parse_args()
     
     return args
