@@ -1,1 +1,1 @@
-from .utils import create_model
+from .utils import create_model, load_checkpoint

@@ -1,35 +1,25 @@
 import os
 import torch
-import numpy as np
 from PIL import Image
 from tqdm import tqdm
 from saldet.utils import *
 import torch.nn.functional as F
 from saldet.io import load_config
-from saldet.model import create_model
 from torch.utils.data import DataLoader
+from saldet.model import load_checkpoint
 from saldet.dataset import InferenceDataset 
+from saldet.utils.operations import normalize
 from saldet.transform import SaliencyTransform
-from saldet.lightning_module import SaliencyModel
 
 def inference(args):
     
     config = load_config(path=args.config)
     
-    if args.ckpt.endswith(".pth"):
-        model = create_model(
-            model_name=config["model"]["model_name"],
-            checkpoint_path=args.ckpt
-        )
-    elif args.ckpt.endswith(".ckpt"):
-        model = SaliencyModel.load_from_checkpoint(
-            checkpoint_path=args.ckpt, 
-            map_location=device()
-        )
-    else:
-        print(f"> [ERROR] {os.path.splitext(args.ckpt)[-1]} not supported.")
-        quit()
-    
+    model = load_checkpoint(
+        ckpt=args.ckpt,
+        model_name=config["model"]["model_name"]
+    )
+
     os.makedirs(args.output_dir, exist_ok=True)
     print(f"> Loading images dataset")
     dataset = InferenceDataset(
@@ -51,9 +41,11 @@ def inference(args):
         for _, batch in tqdm(enumerate(data_loader), total=len(data_loader), desc="Inference"):
             x, shape, image_names = batch
             x = x.to(device())
-            preds = model(x)
+            preds = model(x)            
             if hasattr(preds, "__iter__"):
                 preds = preds[0]
+            if args.normalize:
+                preds = normalize(preds)
             if args.interpolate:
                 preds = F.interpolate(preds, size=shape[:2], mode="bilinear")
             for pred, image_name in zip(preds, image_names):

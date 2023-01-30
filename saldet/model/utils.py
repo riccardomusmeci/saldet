@@ -1,8 +1,9 @@
 import os
 import torch
-from .models import *
 import torch.nn as nn
+from .models import *
 from saldet.utils import device
+from saldet.lightning_module import SaliencyModel
 
 FACTORY = {
     "u2net_lite": U2NET_lite,
@@ -26,12 +27,45 @@ def create_model(
         try:
             state_dict = torch.load(f=checkpoint_path, map_location=device())
         except Exception as e:
-            print(e)
+            print(f"Found an exception while loading state dict - {e}")
+            print(f"Trying on cpu")
             state_dict = torch.load(f=checkpoint_path, map_location="cpu")
         model.load_state_dict(state_dict=state_dict)
         print(f"> Loaded state dict for {model_name}.")
         
     return model
         
+def load_checkpoint(
+    ckpt: str,
+    model_name: str = None,
+) -> nn.Module:
+    """loads either a checkpoint with pytorch-lightning support or a pth file
 
-    
+    Args:
+        ckpt (str): path to ckpt/pth file
+        model_name (str, optional): model name. Defaults to None.
+
+    Returns:
+        nn.Module: model
+    """
+    if ckpt.endswith(".pth"):
+        model = create_model(
+            model_name=model_name,
+            checkpoint_path=ckpt
+        )
+    elif ckpt.endswith(".ckpt"):
+        try:
+            model = SaliencyModel.load_from_checkpoint(
+                checkpoint_path=ckpt, 
+                map_location=device()
+            )
+            if hasattr(model, "criterion") and hasattr(model, "model"):
+                model = model.model
+            print(f"> Loaded state dict from {ckpt}.")
+        except Exception as e:
+            print(f"> [ERROR] Not able to load ckpt from {ckpt} -  Exception: {e}")
+    else:
+        print(f"> [ERROR] {os.path.splitext(ckpt)[-1]} not supported.")
+        quit()
+        
+    return model
