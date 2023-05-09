@@ -61,5 +61,7 @@ def save_image(image: np.array, output_path: str):
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     try:
         cv2.imwrite(output_path, image)
-    except Exception as e:
-        print(f"[ERROR] While saving image at path {output_path} found an error - {e}")
+    except Exception as excp:
+        print(
+            f"[ERROR] While saving image at path {output_path} found an error - {excp}"
+        )
