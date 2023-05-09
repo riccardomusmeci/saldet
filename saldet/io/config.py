@@ -1,3 +1,4 @@
+import sys
 from typing import Dict
 
 import yaml
@@ -17,5 +18,5 @@ def load_config(path: str) -> Dict:
             params = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             print(exc)
-            quit()
+            sys.exit(0)
     return params
