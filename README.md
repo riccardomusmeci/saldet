@@ -1,2 +1,2 @@
 # saldet
-Saliency Detection with PyTorch library (models, loss, utils)
+Saliency Detection library (models, loss, utils) with PyTorch
