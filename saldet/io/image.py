@@ -63,5 +63,6 @@ def save_image(image: np.array, output_path: str):
         cv2.imwrite(output_path, image)
     except Exception as excp:
         print(
-            f"[ERROR] While saving image at path {output_path} found an error - {excp}"
+            f"[ERROR] While saving image at \
+                path {output_path} found an error - {excp}"
         )
