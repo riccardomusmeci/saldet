@@ -11,7 +11,7 @@ class BCEIoULoss(nn.Module):
 
         size = pred.size()[2:]
         mask = F.interpolate(mask, size=size, mode="bilinear")
-        wbce = F.binary_cross_entropy_with_logits(pred, mask)
+        wbce = F.binary_cross_entropy_with_logits(pred, mask.float())
         pred = torch.sigmoid(pred)
         inter = (pred * mask).sum(dim=(2, 3))
         union = (pred + mask).sum(dim=(2, 3))

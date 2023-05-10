@@ -28,12 +28,12 @@ class MultiBCELoss(nn.Module):
         """
 
         if not hasattr(preds, "__iter__"):
-            return self.bce_loss(preds, target)
+            return self.bce_loss(preds, target.float())
         else:
             loss = None
             for pred in preds:
                 if loss is None:
-                    loss = self.bce_loss(pred, target)
+                    loss = self.bce_loss(pred, target.float())
                 else:
-                    loss += self.bce_loss(pred, target)
+                    loss += self.bce_loss(pred, target.float())
             return loss
