@@ -44,6 +44,10 @@ def read_mask(file_path: Path) -> np.array:
     if img is None:
         raise ValueError(f"Unable to read {file_path}.")
 
+    img = img.astype("float64")
+    if img.max() == 255:
+        img /= 255
+
     return img
 
 

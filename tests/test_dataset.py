@@ -1,3 +1,5 @@
+import os
+
 from saldet.dataset import InferenceDataset, SaliencyDataset
 from saldet.transform import SaliencyTransform
 
@@ -26,4 +28,13 @@ def test_train_dataset():
     )
 
     image, mask = dataset[0]
-    assert image.shape[1:] == mask.shape[1:]
+    assert mask.max() == 1, "Mask bust be binary"
+    assert image.shape[1:] == mask.shape[1:], f"Mask and image must have same w, h"
+
+
+def test_inference_dataset():
+
+    root_dir = "tests/data/dataset/test_dataset/train/images"
+    dataset = InferenceDataset(root_dir=root_dir)
+    image, image_path = dataset[0]
+    assert len(image.shape) == 3, f"Image must be RGB"

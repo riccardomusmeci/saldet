@@ -101,6 +101,7 @@ class SaliencyDataset(Dataset):
             sys.exit(0)
         try:
             mask = read_mask(self.masks[index])
+
         except Exception as e:
             print(f"Found error while loading mask: {self.masks[index]}")
             print(f"Exception {e}")
