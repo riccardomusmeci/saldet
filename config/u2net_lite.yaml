@@ -1,0 +1,57 @@
+###### Datamodule ######
+datamodule:
+  batch_size: 16                               # batch size
+  shuffle: true                                # if shuffling dataset
+  num_workers: 5                               # num threads for data loaders
+  pin_memory: true                             # data loader pin memory
+  drop_last: false                             # data loader drop last batch if does not match batch size
+  max_samples: null                            # maximum number of samples per dataset (used only for tests purposes)
+
+###### Trainer #######
+trainer:
+  accelerator: gpu                             # pytorch-lightning trainer accelerator
+  devices: -1                                  # pytorch-lightning trainer gpu devices (-1 means all)
+  max_epochs: 1000                             # pytorch-lightning trainer max number of epochs
+  precision: 16                                # pytorch-lightning trainer training precision
+  check_val_every_n_epoch: 1                   # pytorch-lightning trainer check validation every n epochs
+  gradient_clip_val: 3                         # pytorch-lightning trainer gradient clip value
+
+###### Model ######
+model:  
+  model_name: u2net_lite                       # saliency detection model (u2net_lite, u2net_full)
+  
+###### Loss ###### 
+loss:                                           
+  criterion: multibce                          # name of the loss criterion to use
+
+###### Optimizer ######  
+optimizer:
+  name: adam                                   # optimization algorithm (sgd, adam, adamw)
+  lr: 0.001                                    # base learning rate at the start of the training
+  betas: [0.9, 0.990]                          # adam betas
+  eps: 0.000000001                             # adam eps
+  weight_decay: 0                              # weight decay
+
+###### LR Scheduler ######
+lr_scheduler:
+  name: cosine_restarts                        # lr_scheduler name
+  T_0: 10                                      # when to start cosine scheduling
+  T_mult: 2                                    # multiplicative factor between restarting
+  eta_min: 0                                   # min lr to reach
+
+######## Data Augmentation ###########
+transform: 
+  input_size: 224                              # input image size
+  mean: [0.485, 0.456, 0.406]                  # ImageNet mean normalization ([0.485, 0.456, 0.406])
+  std: [0.229, 0.224, 0.225]                   # ImageNet std normalization ([0.229, 0.224, 0.225])
+  random_crop_p: 0.5                           # random crop transformation probability         
+  h_flip_p: 0.3                                # horizontal flip probabilty
+  v_flip_p: 0.3                                # vertical flip probabilty
+
+##### Checkpoint #####
+callbacks:
+  filename: "{epoch}-{step}-{loss_val:.4f}"
+  monitor: loss_val                                       # metric to monitor
+  mode: min                                               # mode to monitor metric
+  save_top_k: 5                                           # number of best ckpt to save
+  patience: 10                                            # early stopping patience
