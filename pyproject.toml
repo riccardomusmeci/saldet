@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "saldet"
-version = "0.1.0"
+version = "0.4.0"
 description = "Saliency Detection library (models, loss, utils) with PyTorch"
 authors = ["Riccardo Musmeci"]
 license = "MIT"
