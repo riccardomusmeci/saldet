@@ -49,7 +49,7 @@ dataset
                └── img_11.png   
 ```
 
-## **PyTorch Lighting Mode**
+### **PyTorch Lighting Mode**
 saldet provides utils for model and data PyTorch Lightning Modules.
 ```python
 import pytorch_lightning as pl
