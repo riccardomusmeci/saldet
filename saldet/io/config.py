@@ -11,12 +11,11 @@ def load_config(path: str) -> Dict:
         path (str): path to yml file
 
     Returns:
-        Dict: yml dict
+        Dict: dict with configurations (if fail, params is None)
     """
-    with open(path, "r") as stream:
-        try:
+    try:
+        with open(path, "r") as stream:
             params = yaml.safe_load(stream)
-        except yaml.YAMLError as exc:
-            print(exc)
-            sys.exit(0)
+    except:
+        params = None
     return params
