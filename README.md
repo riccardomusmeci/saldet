@@ -57,7 +57,6 @@ from saldet import create_model
 from saldet.pl import SaliencyPLDataModule, SaliencyPLModel
 from saldet.transform import SaliencyTransform
 
-
 # datamodule
 datamodule = SaliencyPLDataModule(
     root_dir=data_dir,
