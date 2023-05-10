@@ -1,0 +1,2 @@
+model:  
+  model_name: u2net_lite                       # saliency detection model (u2net_lite, u2net_full)
