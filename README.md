@@ -1,5 +1,5 @@
 # saldet
-> **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch.
+> **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch (cuda, mps, etc.).
 
 [![PyPI Version][pypi-image]][pypi-url]
 [![Build Status][build-image]][build-url]
@@ -22,8 +22,6 @@ List of saliency detection models supported by saldet:
 
 
 ## **Train**
-
-Train supports cuda and mps devices.
 
 ### **Easy Mode**
 The library comes with easy access to train models thanks to the amazing PyTorch Lightning support. 
