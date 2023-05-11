@@ -67,7 +67,7 @@ dataset
 ```
 
 ### **PyTorch Lighting Mode**
-saldet provides utils for model and data PyTorch Lightning Modules.
+The library provides utils for model and data PyTorch Lightning Modules.
 ```python
 import pytorch_lightning as pl
 from saldet import create_model
@@ -100,3 +100,17 @@ trainer.fit(model=pl_model, datamodule=datamodule)
 
 ### **PyTorch Mode**
 Alternatively you can define your custom training process and use the ```create_model()``` util to use the model you like.
+
+
+## **Inference**
+The library comes with easy access to inference saliency maps from a folder with images.
+```python
+from saldet.experiment import inference
+
+inference(
+    images_dir=...,
+    ckpt=..., # path to ckpt/pth model file
+    config_path=..., # path to configuration file from saldet train
+    output_dir=..., # where to save saliency maps
+)
+```
