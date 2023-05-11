@@ -5,13 +5,10 @@
 # saldet
 > **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch.
 
-
-
 [![PyPI Version][pypi-image]][pypi-url]
 [![Build Status][build-image]][build-url]
 [![Code Coverage][coverage-image]][coverage-url]
 
-...
 
 <!-- Badges: -->
 
