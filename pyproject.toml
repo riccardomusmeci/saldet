@@ -5,7 +5,7 @@ description = "Saliency Detection library (models, loss, utils) with PyTorch"
 authors = ["Riccardo Musmeci"]
 repository = "https://github.com/riccardomusmeci/saldet"
 license = "MIT"
-readme = ["README.md", "LICENSE"]
+readme = "README.md"
 keywords = ["computer vision", "saliency detection"]
 
 [tool.poetry.dependencies]
