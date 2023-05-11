@@ -5,7 +5,7 @@ datamodule:
   num_workers: 5                              # num threads for data loaders
   pin_memory: true                            # data loader pin memory
   drop_last: false                            # data loader drop last batch if does not match batch size
-  max_samples: 500                            # maximum number of samples per dataset (used only for tests purposes)
+  max_samples: null                            # maximum number of samples per dataset (used only for tests purposes)
 
 ###### Trainer #######
 trainer:
