@@ -3,7 +3,24 @@
 </p>
 
 # saldet
-**Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch.
+> **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch.
+
+
+
+[![PyPI Version][pypi-image]][pypi-url]
+[![Build Status][build-image]][build-url]
+[![Code Coverage][coverage-image]][coverage-url]
+
+...
+
+<!-- Badges: -->
+
+[pypi-image]: https://img.shields.io/pypi/v/saldet
+[pypi-url]: https://pypi.org/project/saldet/
+[build-image]: https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml/badge.svg
+[build-url]: https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml
+[coverage-image]: https://codecov.io/gh/riccardomusmeci/saldet/branch/main/graph/badge.svg
+[coverage-url]: https://codecov.io/gh/riccardomusmeci/saldet/
 
 ## **Models**
 List of saliency detection models supported by saldet:
