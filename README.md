@@ -22,6 +22,9 @@ List of saliency detection models supported by saldet:
 
 
 ## **Train**
+
+Train supports cuda and mps devices.
+
 ### **Easy Mode**
 The library comes with easy access to train models thanks to the amazing PyTorch Lightning support. 
 
