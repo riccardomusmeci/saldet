@@ -38,3 +38,4 @@ def test_inference_dataset():
     dataset = InferenceDataset(root_dir=root_dir)
     image, image_path = dataset[0]
     assert len(image.shape) == 3, f"Image must be RGB"
+    assert os.path.exists(image_path), f"{image_path} does not exist."

@@ -1,4 +1,10 @@
 
+<a id='changelog-0.5.1'></a>
+# 0.5.1 — 2023-05-11
+
+### Changed
+- More tests
+
 <a id='changelog-0.5.0'></a>
 # 0.5.0 — 2023-05-11
 
