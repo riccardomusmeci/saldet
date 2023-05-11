@@ -79,13 +79,13 @@ class InferenceDataset(Dataset):
         print(f"> Inference dataset sanity check OK")
 
     def __getitem__(self, index) -> Tuple[torch.Tensor, str]:
-        """Return a tuple (image, filename)
+        """Return a tuple (image, image path)
 
         Args:
             index (int): index of dataset
 
         Returns:
-            Tuple[torch.Tensor, str]: image, filename
+            Tuple[torch.Tensor, str]: image, image path
         """
 
         image_path = self.images[index]
@@ -95,7 +95,7 @@ class InferenceDataset(Dataset):
         if self.transform is not None:
             image, _ = self.transform(image, None)
 
-        return image, os.path.splitext(image_name)[0]
+        return image, image_path
 
     def __len__(self):
         return len(self.images)

@@ -1,4 +1,14 @@
 
+<a id='changelog-0.5.0'></a>
+# 0.5.0 — 2023-05-11
+
+### Added
+- Inference entry point
+- Saliency maps visualization utils
+
+### Changed
+- InferenceDataset gives also image_path
+
 <a id='changelog-0.4.0'></a>
 # 0.4.0 — 2023-05-10
 
