@@ -1,14 +1,9 @@
-<p align="center">
-    <img width="100%" src=".static/example_1.png" alt>
-</p>
-
 # saldet
 > **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch.
 
 [![PyPI Version][pypi-image]][pypi-url]
 [![Build Status][build-image]][build-url]
 [![Code Coverage][coverage-image]][coverage-url]
-
 
 <!-- Badges: -->
 
@@ -111,3 +106,9 @@ inference(
     output_dir=..., # where to save saliency maps
 )
 ```
+
+## **To-Dos**
+
+[ ] Improve code coverage
+
+[ ] Add new models
