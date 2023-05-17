@@ -1,4 +1,11 @@
 
+<a id='changelog-0.5.4'></a>
+# 0.5.4 — 2023-05-17
+
+### Added
+- listing models
+- weights for pretrained models in README.md
+
 <a id='changelog-0.5.3'></a>
 # 0.5.3 — 2023-05-17
 
