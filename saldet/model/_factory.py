@@ -43,6 +43,13 @@ def create_model(model_name: str, checkpoint_path: str = None, **kwargs) -> nn.M
     return model
 
 
+def list_models():
+    """List all available models"""
+    print(f"saldet available models:")
+    for m in FACTORY:
+        print(f"> {m}")
+
+
 def load_checkpoint(
     ckpt: str,
     model_name: str = None,
