@@ -35,13 +35,15 @@ def apply_mask(image: np.array, mask: np.array, alpha: float = 1.0) -> np.array:
 
     Args:
         image (np.array): image to be blended with the mask.
-        mask (np.array): mask to be blended with the image.
+        mask (np.array): binary mask to be blended with the image.
         alpha (float): relative weight of the mask, 1.0 means no transparency, 0.0 means the mask is completely transparent.
             Defaults to 1.0.
 
     Returns:
         np.array: image with masks applied
     """
+
+    assert np.unique(mask).shape[0] <= 2, "Mask must be binary"
     out = image.copy()
     cmap = plt.cm.tab10
     for cat_id in np.unique(mask)[1:]:

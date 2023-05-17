@@ -1,4 +1,17 @@
 
+<a id='changelog-0.5.3'></a>
+# 0.5.3 — 2023-05-17
+
+### Changed
+- Control masks being binary in saldet.plot
+
+<a id='changelog-0.5.1'></a>
+# 0.5.2 — 2023-05-11
+
+### Changed
+- Sigmoid in inferece API
+- Default parameters in inference API
+
 <a id='changelog-0.5.1'></a>
 # 0.5.1 — 2023-05-11
 
