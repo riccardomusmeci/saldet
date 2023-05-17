@@ -20,9 +20,8 @@ def inference(
     config_path: Path,
     ckpt: Path,
     output_dir: Path,
-    normalize: bool = True,
     resize_to_original: bool = True,
-    threshold: float = 0.5,
+    threshold: float = None,
 ):
     """Inference entry point - create saliency maps and save them all in an output dir
 
@@ -31,9 +30,8 @@ def inference(
         config_path (Path): path to saldet configuration file
         ckpt (Path): path to model ckpt (.pth or .ckpt from pytorch_lightning)
         output_dir (Path): path to output dir where saliency maps will be saved
-        normalize (bool, optional): if True, normalizes saliency maps. Defaults to True.
         resize_to_original (bool, optional): if True, resize_to_original saliency maps. Defaults to True.
-        threshold (float, optional): if True, applies a threshold to saliency maps to be binary saliency maps. Defaults to .5.
+        threshold (float, optional): if True, applies a threshold to saliency maps to generate binary saliency maps. Defaults to None.
     """
     config = load_config(path=config_path)
 
@@ -59,19 +57,21 @@ def inference(
             preds = model(x)
             if hasattr(preds, "__iter__"):
                 preds = preds[0]
-            if normalize:
-                preds = ops.normalize(preds)
+            preds = torch.sigmoid(preds)
             if resize_to_original:
                 w, h = Image.open(image_path[0]).size
                 preds = F.interpolate(preds, size=(h, w), mode="bilinear")
             for pred, image_path in zip(preds, image_path):
                 image_name = os.path.basename(image_path).split(".")[0]
                 file_path = os.path.join(output_dir, f"{image_name}.png")
-                pred = pred.squeeze().cpu().numpy()
+
                 if threshold is not None:
                     pred[pred >= threshold] = 255
                     pred[pred < threshold] = 0
                 else:
                     pred *= 255
+
+                pred = pred.squeeze().cpu().numpy()
                 pred = Image.fromarray(pred).convert("L")
+
                 pred.save(file_path)
