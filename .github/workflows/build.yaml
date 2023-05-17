@@ -1,5 +1,5 @@
 # .github/workflows/build.yaml
-name: saldet CI
+name: saldet-CI
 
 on:
   push:
