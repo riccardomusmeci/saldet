@@ -6,11 +6,15 @@
 Welcome to saldet's documentation!
 ==================================
 
+.. mdinclude:: ../README.md
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+   api_reference
+   changelog
+
 
 Indices and tables
 ==================
