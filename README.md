@@ -5,6 +5,7 @@
 [![Build Status][build-image]][build-url]
 [![Code Coverage][coverage-image]][coverage-url]
 
+
 <!-- Badges: -->
 
 [pypi-image]: https://img.shields.io/pypi/v/saldet
@@ -13,6 +14,8 @@
 [build-url]: https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml
 [coverage-image]: https://codecov.io/gh/riccardomusmeci/saldet/branch/main/graph/badge.svg
 [coverage-url]: https://codecov.io/gh/riccardomusmeci/saldet/
+[![Documentation Status](https://readthedocs.org/projects/saldet/badge/?version=latest)](https://saldet.readthedocs.io/en/latest/?badge=latest)
+
 
 ## **Models**
 List of saliency detection models supported by saldet:
