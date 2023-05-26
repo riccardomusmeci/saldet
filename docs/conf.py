@@ -9,12 +9,10 @@
 import os
 import sys
 
-import saldet
-
 project = "saldet"
 copyright = "2023, Riccardo Musmeci"
 author = "Riccardo Musmeci"
-release = saldet.__version__
+release = "0.5.4"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
