@@ -14,11 +14,3 @@ Welcome to saldet's documentation!
 
    api_reference
    changelog
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
