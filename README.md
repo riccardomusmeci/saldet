@@ -4,7 +4,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/saldet)](https://pypi.org/project/saldet/)
 [![Build Status](https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml/badge.svg)](https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml)
 [![Code Coverage](https://codecov.io/gh/riccardomusmeci/saldet/branch/main/graph/badge.svg)](https://codecov.io/gh/riccardomusmeci/saldet/)
-[![Documentation Status](https://readthedocs.org/projects/saldet/badge/?version=latest)](https://saldet.readthedocs.io/en/latest/?badge=latest)
+<!-- [![Documentation Status](https://readthedocs.org/projects/saldet/badge/?version=latest)](https://saldet.readthedocs.io/en/latest/?badge=latest) -->
 
 
 ## **Models**
