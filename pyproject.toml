@@ -30,6 +30,7 @@ urllib3 = "^1.26.15"
 sphinx = "^4.5.0"
 sphinx_rtd_theme-1.2.0 = "^1.2.0"
 furo = "^2021.11.16"
+m2r2 = "^0.3.3.post2"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.3.1"

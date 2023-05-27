@@ -1,25 +1,14 @@
 # saldet
 > **Sal**iency **Det**ection (*saldet*) is a collection of models and tools to perform Saliency Detection with PyTorch (cuda, mps, etc.).
 
-[![PyPI Version][pypi-image]][pypi-url]
-[![Build Status][build-image]][build-url]
-[![Code Coverage][coverage-image]][coverage-url]
-
-
-<!-- Badges: -->
-
-[pypi-image]: https://img.shields.io/pypi/v/saldet
-[pypi-url]: https://pypi.org/project/saldet/
-[build-image]: https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml/badge.svg
-[build-url]: https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml
-[coverage-image]: https://codecov.io/gh/riccardomusmeci/saldet/branch/main/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/riccardomusmeci/saldet/
+[![PyPI Version](https://img.shields.io/pypi/v/saldet)](https://pypi.org/project/saldet/)
+[![Build Status](https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml/badge.svg)](https://github.com/riccardomusmeci/saldet/actions/workflows/build.yaml)
+[![Code Coverage](https://codecov.io/gh/riccardomusmeci/saldet/branch/main/graph/badge.svg)](https://codecov.io/gh/riccardomusmeci/saldet/)
 [![Documentation Status](https://readthedocs.org/projects/saldet/badge/?version=latest)](https://saldet.readthedocs.io/en/latest/?badge=latest)
 
 
 ## **Models**
 List of saliency detection models supported by saldet:
-
 * U2Net - https://arxiv.org/abs/2005.09007v3 ([U2Net repo](https://github.com/xuebinqin/U-2-Net))
 * PGNet - https://arxiv.org/abs/2204.05041 (follow training instructions from [PGNet repo](https://github.com/iCVTEAM/PGNet))
 

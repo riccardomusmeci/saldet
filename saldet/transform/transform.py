@@ -92,7 +92,6 @@ class SaliencyTransform:
         if mask is not None:
             sample = self.transform(image=image, mask=mask)
             image, mask = sample["image"], sample["mask"]
-
         else:
             image = self.transform(image=image)["image"]
             mask = None
