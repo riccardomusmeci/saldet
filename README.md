@@ -113,6 +113,7 @@ inference(
     ckpt=..., # path to ckpt/pth model file
     config_path=..., # path to configuration file from saldet train
     output_dir=..., # where to save saliency maps
+    sigmoid=..., # whether to apply sigmoid to predicted masks
 )
 ```
 
