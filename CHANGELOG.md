@@ -1,4 +1,13 @@
 
+<a id='changelog-0.6.0'></a>
+# 0.6.0 — 2023-06-02
+
+### Added
+- PFAN model
+
+### Changed
+- Inference entry point supports sigmoid option
+
 <a id='changelog-0.5.4'></a>
 # 0.5.4 — 2023-05-17
 
