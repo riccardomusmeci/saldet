@@ -10,7 +10,12 @@ from .models import *
 
 __all__ = ["create_model", "load_checkpoint"]
 
-FACTORY = {"u2net_lite": U2NET_lite, "u2net_full": U2NET_full, "pgnet": PGNet}
+FACTORY = {
+    "u2net_lite": U2NET_lite,
+    "u2net_full": U2NET_full,
+    "pgnet": PGNet,
+    "pfan": PFAN,
+}
 
 
 def create_model(model_name: str, checkpoint_path: str = None, **kwargs) -> nn.Module:
