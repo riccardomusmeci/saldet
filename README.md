@@ -14,12 +14,12 @@ List of saliency detection models supported by saldet:
 * PFAN - https://arxiv.org/pdf/1903.00179v2.pdf ([PFAN repo](https://github.com/sairajk/PyTorch-Pyramid-Feature-Attention-Network-for-Saliency-Detection))
 
 ### **Weights**
-* PGNet -> weights from [PGNet's repo](https://github.com/iCVTEAM/PGNet) converted to saldet version from [here](https://drive.google.com/file/d/1gr0lWZoCIucrV5-Z_QV23tUNd8826EjN/view?usp=share_link)
+* PGNet -> weights from [PGNet repo](https://github.com/iCVTEAM/PGNet) converted to saldet version from [here](https://drive.google.com/file/d/1gr0lWZoCIucrV5-Z_QV23tUNd8826EjN/view?usp=share_link)
 * U2Net Lite -> weights from [here](https://drive.google.com/file/d/1rbSTGKAE-MTxBYHd-51l2hMOQPT_7EPy/view?usp=sharing) (U2Net repository)
 * U2Net Full -> weights from [here](https://drive.google.com/file/d/1ao1ovG1Qtx4b7EoskHXmi2E9rp5CHLcZ/view?usp=sharing) (U2Net repository)
 * U2Net Full - Portrait -> weights for portrait images from [here](https://drive.google.com/file/d/1IG3HdpcRiDoWNookbncQjeaPN28t90yW/view) (U2Net repository)
 * U2Net Full - Human Segmentation -> weights for segmenting humans from [here](https://drive.google.com/file/d/1-Yg0cxgrNhHP-016FPdp902BR-kSsA4P/view) (U2Net repository)
-* PFAN -> weights from [PFAN's repo](https://github.com/sairajk/PyTorch-Pyramid-Feature-Attention-Network-for-Saliency-Detection) converted to saldet version from [here](https://drive.google.com/file/d/1z6KdZh6arQOE6R30_AxNLvCOLe00dnez/view?usp=share_link)
+* PFAN -> weights from [PFAN repo](https://github.com/sairajk/PyTorch-Pyramid-Feature-Attention-Network-for-Saliency-Detection) converted to saldet version from [here](https://drive.google.com/file/d/1z6KdZh6arQOE6R30_AxNLvCOLe00dnez/view?usp=share_link)
 
 
 To load pre-trained weights:
