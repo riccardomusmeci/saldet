@@ -37,3 +37,15 @@ def test_pgnet():
         out.shape[0] == batch_size
     ), f"Num mask does not match batch_size {batch_size}"
     assert out.shape[1] == 1, f"Mask must be single-dim not {out.shape[1]-dim}"
+
+
+def test_pfan():
+    input_size = 224
+    model = create_model("pfan", pretrained=True)
+    batch_size = 8
+    x = torch.rand((batch_size, 3, input_size, input_size))
+    out = model(x)
+    assert (
+        out.shape[0] == batch_size
+    ), f"Num mask does not match batch_size {batch_size}"
+    assert out.shape[1] == 1, f"Mask must be single-dim not {out.shape[1]-dim}"
