@@ -1,3 +1,3 @@
-from .model import create_model, list_models
+from .models import create_model, list_models
 
-__version__ = "0.5.4"
+__version__ = "0.6.0"
