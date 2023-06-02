@@ -10,7 +10,7 @@ from tqdm import tqdm
 from saldet import ops
 from saldet.dataset import InferenceDataset
 from saldet.io import load_config
-from saldet.model import load_checkpoint
+from saldet.models import load_checkpoint
 from saldet.transform import SaliencyTransform
 from saldet.utils import device
 
@@ -20,6 +20,7 @@ def inference(
     config_path: Path,
     ckpt: Path,
     output_dir: Path,
+    sigmoid: bool,
     resize_to_original: bool = True,
     threshold: float = None,
 ):
@@ -30,6 +31,7 @@ def inference(
         config_path (Path): path to saldet configuration file
         ckpt (Path): path to model ckpt (.pth or .ckpt from pytorch_lightning)
         output_dir (Path): path to output dir where saliency maps will be saved
+        sigmoid (bool): if True, applies sigmoid to predicted mask.
         resize_to_original (bool, optional): if True, resize_to_original saliency maps. Defaults to True.
         threshold (float, optional): if True, applies a threshold to saliency maps to generate binary saliency maps. Defaults to None.
     """
@@ -55,16 +57,16 @@ def inference(
             x, image_path = batch
             x = x.to(device())
             preds = model(x)
-            if hasattr(preds, "__iter__"):
+            if isinstance(preds, tuple) or isinstance(preds, list):
                 preds = preds[0]
-            preds = torch.sigmoid(preds)
+            if sigmoid:
+                preds = torch.sigmoid(preds)
             if resize_to_original:
                 w, h = Image.open(image_path[0]).size
                 preds = F.interpolate(preds, size=(h, w), mode="bilinear")
             for pred, image_path in zip(preds, image_path):
                 image_name = os.path.basename(image_path).split(".")[0]
                 file_path = os.path.join(output_dir, f"{image_name}.png")
-
                 if threshold is not None:
                     pred[pred >= threshold] = 255
                     pred[pred < threshold] = 0
