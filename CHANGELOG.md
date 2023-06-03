@@ -1,4 +1,11 @@
 
+<a id='changelog-0.6.1'></a>
+# 0.6.1 — 2023-06-03
+
+### Fixed 
+- Check model_name in create_model
+
+
 <a id='changelog-0.6.0'></a>
 # 0.6.0 — 2023-06-02
 

@@ -29,11 +29,8 @@ def create_model(model_name: str, checkpoint_path: str = None, **kwargs) -> nn.M
         nn.Module: saliency model
     """
 
-    if model_name in FACTORY.keys():
-        model = FACTORY[model_name](**kwargs)
-    else:
-        print(f"> [ERROR] Model {model_name} not found.")
-
+    assert model_name in FACTORY.keys(), f"Model {model_name} not supported."
+    model = FACTORY[model_name](**kwargs)
     if checkpoint_path is not None:
         assert os.path.exists(checkpoint_path), f"{checkpoint_path} does not exist."
         try:
